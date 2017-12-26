@@ -3,6 +3,7 @@ package br.com.stefanini.controlepontoback.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -33,5 +34,10 @@ public class PontoController {
 	@PutMapping("save")
 	public PontoDTO update(@RequestBody PontoDTO ponto) {
 		return pontoService.update(ponto);
+	}
+	
+	@DeleteMapping("delete")
+	public boolean delete(@RequestBody PontoDTO ponto) {
+		return pontoService.delete(ponto);
 	}
 }

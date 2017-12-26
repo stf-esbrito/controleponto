@@ -36,5 +36,15 @@ public class PontoService {
 		return PontoConverter.getPontoAsDTO(pontoRepository.save(pontoAtual));
 	}
 
+	public boolean delete(PontoDTO ponto) {
+		Ponto pontoAtual = pontoRepository.findById(ponto.getId());
+		try{
+			pontoRepository.delete(ponto.getId());
+			return true;
+		} catch(Exception e) {
+			return false;
+		}
+	}
+
 	
 }

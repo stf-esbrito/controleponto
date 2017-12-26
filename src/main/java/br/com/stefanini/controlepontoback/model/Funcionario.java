@@ -24,7 +24,7 @@ public class Funcionario {
 	
 	private String cpf;
 	
-	@ManyToOne(cascade=CascadeType.ALL)
+	@ManyToOne(cascade=CascadeType.PERSIST)
 	@JoinColumn(name="admin", referencedColumnName="id")
 	private Admin admin;
 	
