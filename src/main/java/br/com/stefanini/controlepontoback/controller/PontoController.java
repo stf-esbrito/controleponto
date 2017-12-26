@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -28,5 +29,10 @@ public class PontoController {
 	@PostMapping("save")
 	public Ponto save(@RequestBody PontoDTO ponto){
 		return pontoService.save(ponto);
+	}
+	
+	@PutMapping("save")
+	public PontoDTO update(@RequestBody PontoDTO ponto) {
+		return pontoService.update(ponto);
 	}
 }

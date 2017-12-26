@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.stefanini.controlepontoback.dto.FuncionarioDTO;
-import br.com.stefanini.controlepontoback.model.Admin;
 import br.com.stefanini.controlepontoback.model.Funcionario;
 
 public class FuncionarioConverter {

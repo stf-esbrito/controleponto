@@ -8,4 +8,6 @@ import br.com.stefanini.controlepontoback.model.Ponto;
 @Repository
 public interface PontoRepository extends JpaRepository<Ponto, Long>{
 
+	
+	Ponto findById(Long id);
 }

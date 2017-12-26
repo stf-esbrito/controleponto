@@ -29,5 +29,12 @@ public class PontoService {
 		pontoModel.getFuncionario().setAdmin(adminRepository.findById(ponto.getFuncionario().getCreatedByAdmin().getId()));
 		return pontoRepository.save(pontoModel);
 	}
+
+	public PontoDTO update(PontoDTO ponto) {
+		Ponto pontoAtual = pontoRepository.findById(ponto.getId());
+		pontoAtual.setSaida(ponto.getSaida());
+		return PontoConverter.getPontoAsDTO(pontoRepository.save(pontoAtual));
+	}
+
 	
 }
