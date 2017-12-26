@@ -24,8 +24,9 @@ public class Funcionario {
 	private String cpf;
 	
 	@ManyToOne
-	@JoinColumn(name="admin", referencedColumnName = "id")
+	@JoinColumn(name="admin")
 	private Admin admin;
+	
 	
 	@OneToMany(mappedBy="funcionario")
 	private List<Ponto> pontos;
