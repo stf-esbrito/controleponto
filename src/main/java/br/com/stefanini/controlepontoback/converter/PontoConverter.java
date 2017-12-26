@@ -37,7 +37,7 @@ public class PontoConverter {
 	public static List<Ponto> toModel(List<PontoDTO> pontosDTO){
 		List<Ponto> pontosModel = new ArrayList<>();
 		if(!pontosDTO.isEmpty()) {
-			pontosDTO.forEach(pnt->{
+			pontosDTO.forEach(pnt -> {
 				pontosModel.add(getPontoAsModel(pnt));
 			});
 		}

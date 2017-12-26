@@ -12,8 +12,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import br.com.stefanini.controlepontoback.dto.AdminDTO;
-
 @Entity
 @Table(name="funcionario")
 public class Funcionario {
@@ -27,7 +25,7 @@ public class Funcionario {
 	private String cpf;
 	
 	@ManyToOne(cascade=CascadeType.ALL)
-	@JoinColumn(name="admin")
+	@JoinColumn(name="admin", referencedColumnName="id")
 	private Admin admin;
 	
 	
