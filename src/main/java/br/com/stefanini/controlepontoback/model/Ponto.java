@@ -2,6 +2,7 @@ package br.com.stefanini.controlepontoback.model;
 
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -26,7 +27,7 @@ public class Ponto {
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date saida;
 	
-	@ManyToOne
+	@ManyToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name="funcionario", referencedColumnName = "id")
 	private Funcionario funcionario;
 

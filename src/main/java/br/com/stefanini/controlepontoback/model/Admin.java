@@ -25,6 +25,7 @@ public class Admin {
 	@OneToMany(mappedBy="admin")
 	private List<Funcionario> funcionarios;
 
+
 	public String getLogin() {
 		return login;
 	}
