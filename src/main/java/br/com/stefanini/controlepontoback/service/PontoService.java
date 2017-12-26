@@ -24,10 +24,10 @@ public class PontoService {
 		return PontoConverter.toDTO(pontoRepository.findAll());
 	}
 
-	public Ponto save(PontoDTO ponto) {
+	public PontoDTO save(PontoDTO ponto) {
 		Ponto pontoModel = PontoConverter.getPontoAsModel(ponto);		
 		pontoModel.getFuncionario().setAdmin(adminRepository.findById(ponto.getFuncionario().getCreatedByAdmin().getId()));
-		return pontoRepository.save(pontoModel);
+		return PontoConverter.getPontoAsDTO(pontoRepository.save(pontoModel));
 	}
 
 	public PontoDTO update(PontoDTO ponto) {

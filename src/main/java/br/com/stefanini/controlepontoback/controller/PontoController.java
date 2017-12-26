@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.stefanini.controlepontoback.dto.PontoDTO;
-import br.com.stefanini.controlepontoback.model.Ponto;
 import br.com.stefanini.controlepontoback.service.PontoService;
 
 @RestController
@@ -27,7 +26,7 @@ public class PontoController {
 	}
 	
 	@PostMapping("save")
-	public Ponto save(@RequestBody PontoDTO ponto){
+	public PontoDTO save(@RequestBody PontoDTO ponto){
 		return pontoService.save(ponto);
 	}
 	
