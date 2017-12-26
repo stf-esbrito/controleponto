@@ -37,7 +37,6 @@ public class PontoService {
 	}
 
 	public boolean delete(PontoDTO ponto) {
-		Ponto pontoAtual = pontoRepository.findById(ponto.getId());
 		try{
 			pontoRepository.delete(ponto.getId());
 			return true;
