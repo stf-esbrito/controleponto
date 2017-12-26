@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import br.com.stefanini.controlepontoback.converter.FuncionarioConverter;
 import br.com.stefanini.controlepontoback.dto.FuncionarioDTO;
+import br.com.stefanini.controlepontoback.model.Funcionario;
 import br.com.stefanini.controlepontoback.repository.FuncionarioRepository;
 
 @Service
@@ -18,6 +19,11 @@ public class FuncionarioService {
 	
 	public List<FuncionarioDTO> findAll(){
 		return FuncionarioConverter.toDTO(funcionarioRepository.findAll());
+	}
+
+
+	public Funcionario findById(Long id) {
+		return funcionarioRepository.findById(id);
 	}
 	
 }

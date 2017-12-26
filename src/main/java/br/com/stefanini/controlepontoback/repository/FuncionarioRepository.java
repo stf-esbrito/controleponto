@@ -8,4 +8,6 @@ import br.com.stefanini.controlepontoback.model.Funcionario;
 @Repository
 public interface FuncionarioRepository extends JpaRepository<Funcionario, Long>{
 
+	Funcionario findById(Long id);
+
 }

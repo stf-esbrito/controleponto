@@ -27,7 +27,7 @@ public class Ponto {
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date saida;
 	
-	@ManyToOne(cascade=CascadeType.PERSIST)
+	@ManyToOne(cascade= {CascadeType.PERSIST, CascadeType.MERGE})
 	@JoinColumn(name="funcionario", referencedColumnName = "id")
 	private Funcionario funcionario;
 

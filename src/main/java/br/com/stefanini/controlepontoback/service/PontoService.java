@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 import br.com.stefanini.controlepontoback.converter.PontoConverter;
 import br.com.stefanini.controlepontoback.dto.PontoDTO;
 import br.com.stefanini.controlepontoback.model.Ponto;
-import br.com.stefanini.controlepontoback.repository.AdminRepository;
 import br.com.stefanini.controlepontoback.repository.PontoRepository;
 
 @Service
@@ -17,17 +16,29 @@ public class PontoService {
 	@Autowired
 	private PontoRepository pontoRepository;
 	
+	
 	@Autowired
-	private AdminRepository adminRepository;
+	private FuncionarioService funcionarioService;
+
 
 	public List<PontoDTO> findAll() {
 		return PontoConverter.toDTO(pontoRepository.findAll());
 	}
 
 	public PontoDTO save(PontoDTO ponto) {
-		Ponto pontoModel = PontoConverter.getPontoAsModel(ponto);		
-		pontoModel.getFuncionario().setAdmin(adminRepository.findById(ponto.getFuncionario().getCreatedByAdmin().getId()));
-		return PontoConverter.getPontoAsDTO(pontoRepository.save(pontoModel));
+		Ponto pontoModel = null;
+		Ponto pontoBuscado = null;
+		if(ponto.getId() != null) {
+			pontoBuscado = pontoRepository.findById(ponto.getId());
+		}
+		if(pontoBuscado != null) {
+			pontoBuscado.setSaida(ponto.getSaida());
+			return PontoConverter.getPontoAsDTO(pontoRepository.save(pontoBuscado));
+		} else {
+			pontoModel = PontoConverter.getPontoAsModel(ponto);
+			pontoModel.setFuncionario(funcionarioService.findById(ponto.getFuncionario().getId()));
+			return PontoConverter.getPontoAsDTO(pontoRepository.save(pontoModel));
+		}
 	}
 
 	public PontoDTO update(PontoDTO ponto) {
@@ -43,6 +54,10 @@ public class PontoService {
 		} catch(Exception e) {
 			return false;
 		}
+	}
+
+	public List<PontoDTO> findByFuncionarioId(Long id) {
+		return PontoConverter.toDTO(pontoRepository.findByIdFuncionario(id));
 	}
 
 	
