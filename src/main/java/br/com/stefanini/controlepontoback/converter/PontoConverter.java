@@ -23,7 +23,7 @@ public class PontoConverter {
 		pntsModel.setEntrada(pnt.getEntrada());
 		pntsModel.setSaida(pnt.getSaida());
 		pntsModel.setFuncionario(FuncionarioConverter.getFuncionarioAsModel(pnt.getFuncionario()));
-		return null;
+		return pntsModel;
 	}
 	public static List<PontoDTO> toDTO(List<Ponto> pontosModel){
 		List<PontoDTO> pontosDTO = new ArrayList<>();

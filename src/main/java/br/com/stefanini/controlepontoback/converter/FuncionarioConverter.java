@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.stefanini.controlepontoback.dto.FuncionarioDTO;
+import br.com.stefanini.controlepontoback.model.Admin;
 import br.com.stefanini.controlepontoback.model.Funcionario;
 
 public class FuncionarioConverter {
@@ -20,7 +21,6 @@ public class FuncionarioConverter {
 	public static Funcionario getFuncionarioAsModel(FuncionarioDTO funcionarioDTO) {
 		Funcionario funcionarioModel = new Funcionario();
 		funcionarioModel.setCpf(funcionarioDTO.getCpf());
-		funcionarioModel.setId(funcionarioDTO.getId());
 		funcionarioModel.setNome(funcionarioDTO.getNome());
 		return funcionarioModel;
 	}
