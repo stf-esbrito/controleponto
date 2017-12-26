@@ -25,7 +25,7 @@ public class PontoController {
 		return pontoService.findAll();
 	}
 	
-	@PostMapping("/save")
+	@PostMapping("save")
 	public Ponto save(@RequestBody PontoDTO ponto){
 		return pontoService.save(ponto);
 	}
