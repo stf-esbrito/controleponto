@@ -16,14 +16,30 @@ public class FuncionarioService {
 	@Autowired
 	private FuncionarioRepository funcionarioRepository;
 	
+	@Autowired
+	private AdminService adminService;
 	
-	public List<FuncionarioDTO> findAll(){
-		return FuncionarioConverter.toDTO(funcionarioRepository.findAll());
-	}
 
 
 	public Funcionario findById(Long id) {
 		return funcionarioRepository.findById(id);
+	}
+
+
+	public FuncionarioDTO save(FuncionarioDTO funcionario) {
+		return FuncionarioConverter.getFuncionarioAsDTO(funcionarioRepository.save(getFuncionarioAsModel(funcionario)));
+	}
+
+
+	private Funcionario getFuncionarioAsModel(FuncionarioDTO funcionario) {
+		Funcionario func = FuncionarioConverter.getFuncionarioAsModel(funcionario);
+		func.setAdmin(adminService.findById(func.getAdmin().getId()));
+		return func;
+	}
+
+
+	public List<FuncionarioDTO> findAll(String name) {
+		return FuncionarioConverter.toDTO(funcionarioRepository.findByNomeContaining(name));
 	}
 	
 }

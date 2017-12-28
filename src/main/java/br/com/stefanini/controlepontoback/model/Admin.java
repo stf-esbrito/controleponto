@@ -25,7 +25,11 @@ public class Admin {
 	@OneToMany(mappedBy="admin")
 	private List<Funcionario> funcionarios;
 
-
+	public Admin() {
+	}
+	public Admin( Long id) {
+		this.id = id;
+	}
 	public String getLogin() {
 		return login;
 	}

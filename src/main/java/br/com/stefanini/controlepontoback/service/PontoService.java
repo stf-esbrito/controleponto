@@ -21,8 +21,15 @@ public class PontoService {
 	private FuncionarioService funcionarioService;
 
 
-	public List<PontoDTO> findAll() {
+	public List<PontoDTO> findAllPontos() {
 		return PontoConverter.toDTO(pontoRepository.findAll());
+	}
+	public List<PontoDTO> findAll(Long id){
+		if(id == 0) {
+			return findAllPontos();
+		} else {
+			return findByFuncionarioId(id);
+		}
 	}
 
 	public PontoDTO save(PontoDTO ponto) {
@@ -57,7 +64,8 @@ public class PontoService {
 	}
 
 	public List<PontoDTO> findByFuncionarioId(Long id) {
-		return PontoConverter.toDTO(pontoRepository.findByIdFuncionario(id));
+		List<Ponto> pontos = pontoRepository.findByIdFuncionario(id);
+		return PontoConverter.toDTO(pontos);
 	}
 
 	
