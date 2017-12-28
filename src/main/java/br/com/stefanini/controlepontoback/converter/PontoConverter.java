@@ -13,7 +13,9 @@ public class PontoConverter {
 		PontoDTO pntsDTO = new PontoDTO();
 		pntsDTO.setId(pnt.getId());
 		pntsDTO.setEntrada(pnt.getEntrada());
-		pntsDTO.setSaida(pnt.getSaida());
+		if(!(pnt.getSaida() == null)) {
+			pntsDTO.setSaida(pnt.getSaida());
+		}
 		pntsDTO.setFuncionario(FuncionarioConverter.getFuncionarioAsDTO(pnt.getFuncionario()));
 		return pntsDTO;
 	}

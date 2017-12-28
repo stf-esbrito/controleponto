@@ -24,7 +24,7 @@ public class FuncionarioController {
 	private FuncionarioService funcionarioService;
 	
 	@GetMapping
-	public List<FuncionarioDTO> findAll(@RequestParam("name") String name){
+	public List<FuncionarioDTO> findAll(@RequestParam(value = "name", defaultValue="") String name){
 		return funcionarioService.findAll(name);
 	}
 	

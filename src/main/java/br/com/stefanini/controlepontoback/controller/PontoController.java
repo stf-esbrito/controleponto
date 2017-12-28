@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -13,35 +14,49 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import br.com.stefanini.controlepontoback.dto.FuncionarioDTO;
 import br.com.stefanini.controlepontoback.dto.PontoDTO;
 import br.com.stefanini.controlepontoback.service.PontoService;
 
 @CrossOrigin
 @RestController
-@RequestMapping
+@RequestMapping("pontos")
 public class PontoController {
 
 	@Autowired
 	private PontoService pontoService;
 	
 	@GetMapping
-	public List<PontoDTO> findAll(@RequestParam(value = "id", defaultValue = "0") Long id){
-		return pontoService.findAll(id);
+	public List<PontoDTO> findAll(@RequestParam(value = "nome", defaultValue="") String nome){
+		return pontoService.findAll(nome);
+	}
+	@GetMapping("/allFuncOk")
+	public List<FuncionarioDTO> findAllFuncOk(){
+		return pontoService.findAllFuncOk();
 	}
 	
-	@PostMapping("save")
+	@GetMapping("/all")
+	public List<PontoDTO> findAllPontosSemSaida(){
+		return pontoService.findAllSemSaida();
+	}
+	@GetMapping("{id}")
+	public PontoDTO find(@PathVariable Long id){
+		return pontoService.findById(id);
+	}
+	
+	@PostMapping
 	public PontoDTO save(@RequestBody PontoDTO ponto){
 		return pontoService.save(ponto);
 	}
 	
-	@PutMapping("save")
+	@PutMapping
 	public PontoDTO update(@RequestBody PontoDTO ponto) {
 		return pontoService.update(ponto);
 	}
 	
-	@DeleteMapping("delete")
-	public boolean delete(@RequestBody PontoDTO ponto) {
-		return pontoService.delete(ponto);
+	@DeleteMapping("{id}")
+	public boolean delete(@PathVariable Long id) {
+		return pontoService.delete(id);
 	}
 	
 

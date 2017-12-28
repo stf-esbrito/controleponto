@@ -7,9 +7,9 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 public class PontoDTO {
 	
 	private Long id;
-	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy HH:mm:ss")
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy HH:mm:ss", timezone= "GMT-3")
 	private Date entrada;
-	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy HH:mm:ss")
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy HH:mm:ss", timezone= "GMT-3")
 	private Date saida;
 	private FuncionarioDTO funcionario;
 	

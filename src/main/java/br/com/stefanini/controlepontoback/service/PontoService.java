@@ -5,7 +5,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import br.com.stefanini.controlepontoback.converter.FuncionarioConverter;
 import br.com.stefanini.controlepontoback.converter.PontoConverter;
+import br.com.stefanini.controlepontoback.dto.FuncionarioDTO;
 import br.com.stefanini.controlepontoback.dto.PontoDTO;
 import br.com.stefanini.controlepontoback.model.Ponto;
 import br.com.stefanini.controlepontoback.repository.PontoRepository;
@@ -24,11 +26,11 @@ public class PontoService {
 	public List<PontoDTO> findAllPontos() {
 		return PontoConverter.toDTO(pontoRepository.findAll());
 	}
-	public List<PontoDTO> findAll(Long id){
-		if(id == 0) {
+	public List<PontoDTO> findAll(String nome){
+		if(nome == "") {
 			return findAllPontos();
 		} else {
-			return findByFuncionarioId(id);
+			return PontoConverter.toDTO(pontoRepository.findByFuncionario_NomeContaining(nome));
 		}
 	}
 
@@ -54,18 +56,25 @@ public class PontoService {
 		return PontoConverter.getPontoAsDTO(pontoRepository.save(pontoAtual));
 	}
 
-	public boolean delete(PontoDTO ponto) {
+	public boolean delete(Long id) {
 		try{
-			pontoRepository.delete(ponto.getId());
+			pontoRepository.delete(id);
 			return true;
 		} catch(Exception e) {
 			return false;
 		}
 	}
 
-	public List<PontoDTO> findByFuncionarioId(Long id) {
-		List<Ponto> pontos = pontoRepository.findByIdFuncionario(id);
-		return PontoConverter.toDTO(pontos);
+	public PontoDTO findById(Long id) {
+		return PontoConverter.getPontoAsDTO(pontoRepository.findById(id));
+	}
+	public List<PontoDTO> findAllSemSaida() {
+		return PontoConverter.toDTO(pontoRepository.findBySaidaIsNull());
+	}
+	public List<FuncionarioDTO> findAllFuncOk() {
+		List<FuncionarioDTO> response = FuncionarioConverter.toDTO(pontoRepository.findByFuncionarioOk());
+		response.addAll(FuncionarioConverter.toDTO(pontoRepository.findAllNonListedFuncionario()));
+		return response;
 	}
 
 	
