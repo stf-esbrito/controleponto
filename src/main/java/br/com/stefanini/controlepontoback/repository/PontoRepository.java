@@ -18,9 +18,9 @@ public interface PontoRepository extends JpaRepository<Ponto, Long>{
 
 	List<Ponto> findBySaidaIsNull();
 	
-	@Query("select distinct p.funcionario from Ponto p where p.saida != null")
+	@Query("select distinct p.funcionario from Ponto p where p.saida is not null and p.funcionario not in (select p2.funcionario from Ponto p2 where p2.saida is null and p.funcionario = p2.funcionario)")
 	List<Funcionario> findByFuncionarioOk();
 	
-	@Query("select f from Funcionario f where f  not in (select p.funcionario from Ponto p)")
+	@Query("select f from Funcionario f where f not in (select p.funcionario from Ponto p)")
 	List<Funcionario> findAllNonListedFuncionario();
 }
