@@ -36,8 +36,8 @@ public class PontoController {
 	}
 	
 	@GetMapping("/all")
-	public List<PontoDTO> findAllPontosSemSaida(){
-		return pontoService.findAllSemSaida();
+	public List<PontoDTO> findAllPontosSemSaida(@RequestParam(value = "nome", defaultValue="") String nome){
+		return pontoService.findAllSemSaida(nome);
 	}
 	@GetMapping("{id}")
 	public PontoDTO find(@PathVariable Long id){

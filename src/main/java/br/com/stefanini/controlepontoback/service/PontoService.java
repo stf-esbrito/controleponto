@@ -68,8 +68,12 @@ public class PontoService {
 	public PontoDTO findById(Long id) {
 		return PontoConverter.getPontoAsDTO(pontoRepository.findById(id));
 	}
-	public List<PontoDTO> findAllSemSaida() {
-		return PontoConverter.toDTO(pontoRepository.findBySaidaIsNull());
+	public List<PontoDTO> findAllSemSaida(String nome){
+		if(nome=="") {
+			return PontoConverter.toDTO(pontoRepository.findBySaidaIsNull());
+		} else {
+			return PontoConverter.toDTO(pontoRepository.findBySaidaIsNullAndFuncionario_NomeContaining(nome));
+		}
 	}
 	public List<FuncionarioDTO> findAllFuncOk() {
 		List<FuncionarioDTO> response = FuncionarioConverter.toDTO(pontoRepository.findByFuncionarioOk());
